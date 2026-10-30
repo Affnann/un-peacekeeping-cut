@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import matplotlib
+import matplotlib.dates
 import matplotlib.ticker
 
 matplotlib.use("Agg")
@@ -32,7 +33,9 @@ for d, lab, ha, dx in [("2025-06-01", "June 2025 ", "right", -8), ("2025-10-01",
     ax.axvline(pd.Timestamp(d), color=GREY, lw=1, ls="--")
     ax.text(pd.Timestamp(d) + pd.Timedelta(days=dx), m.values.max() / 1000 * 1.005, lab, ha=ha, va="bottom", fontsize=8, color="#555555")
 ax.set_ylabel("Uniformed personnel (thousands)")
-ax.set_ylim(40, max(m.values) / 1000 * 1.06)
+ax.set_ylim(0, max(m.values) / 1000 * 1.12)  # from zero, so the height of the fall is not exaggerated
+ax.xaxis.set_major_locator(matplotlib.dates.MonthLocator(bymonth=[1, 7]))
+ax.xaxis.set_major_formatter(matplotlib.dates.DateFormatter("%b %Y"))
 ax.grid(axis="y", color="#E5E5E5", lw=0.8)
 fig.tight_layout()
 fig.savefig(FIG / "fig1_monthly_total.png", dpi=300)
@@ -46,10 +49,8 @@ mis = mis.sort_values("pct")
 fig, ax = plt.subplots(figsize=(6.5, 3.6))
 ax.barh(mis.index, mis["pct"], color=[ACCENT if p <= -20 else GREY for p in mis["pct"]])
 def pct_label(p):
-    if 0 < abs(p) < 1:  # one decimal for small changes, so -0.5% does not show as 0%
-        return ("−" if p < 0 else "") + f"{abs(p):.1f}%"
-    v = round(p)
-    return ("−" if v < 0 else "") + f"{abs(v):.0f}%"
+    # one decimal, as in Table 2; a minus sign for falls and a plus sign for rises
+    return ("−" if p < 0 else "+") + f"{abs(p):.1f}%"
 
 
 for i, (p, x0) in enumerate(zip(mis["pct"], mis["x0"])):
@@ -75,7 +76,7 @@ r = sm.WLS(s["pct"], X, weights=s["x0"]).fit()
 xs = np.linspace(np.log(s["D"].min()), np.log(s["D"].max()), 50)
 ax.plot(np.exp(xs), r.params["const"] + r.params["D"] * xs, color=INK, lw=1.2)
 # Labels with a leader line where a plain label would sit on a neighbouring circle
-LEADER = {"PAK": (-4, 16), "URY": (-22, 10), "MWI": (0, 12)}  # offsets in points
+LEADER = {"PAK": (-4, 16), "URY": (-22, 10), "MWI": (0, 12), "BGD": (-6, -26), "IND": (0, 18), "IDN": (14, -16)}  # offsets in points
 for iso in ["RWA", "NPL", "GHA", "BGD", "IND", "CHN", "ZAF", "PAK", "IDN", "URY", "MWI"]:
     if iso not in s.index:
         continue
@@ -87,7 +88,7 @@ for iso in ["RWA", "NPL", "GHA", "BGD", "IND", "CHN", "ZAF", "PAK", "IDN", "URY"
 ax.set_xscale("log")
 ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
 ax.set_xlabel("Baseline UN payments as % of 2024 military spending (log scale)")
-ax.set_ylabel("Change in personnel (%)")
+ax.set_ylabel("Change in uniformed personnel,\nJune 2025 to July 2026 (%)")
 ax.axhline(0, color="#CCCCCC", lw=0.8)
 ax.grid(color="#EEEEEE", lw=0.6)
 fig.tight_layout()

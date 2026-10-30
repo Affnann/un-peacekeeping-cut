@@ -24,4 +24,6 @@ X8 C5 with D from all missions: H2 total on ln D,-1.7085842794092116,0.841154904
 "X9 C5 without only UNAMI, UNMHA and UNVMC: H1 pct on exposure pct",,0.17963598118049143,2.2832038326699737e-11,,,55,,1.2011648583091816,0.107308301466715,,,,,,
 "X9 C5 without only UNAMI, UNMHA and UNVMC: H2 total on ln D",-1.927534760057893,0.4734475020375958,4.675660404237867e-05,,,53,,,0.10205704923469505,,,,,,
 "X9 C5 without only UNAMI, UNMHA and UNVMC: H3 cell pct on ln D, mission FE",-1.684920386328447,0.6650055187500196,0.01128672963044989,,,92,,,0.15218786721557787,,,,,9.0,
-X10 H3 clustered by mission (CR1; wild cluster bootstrap),-1.6733936059627217,1.0512334797946792,0.14588486163032824,,,94,,,,,,,,10.0,0.32943294329432943
+X10 H3 clustered by mission (CR1; wild cluster bootstrap),-1.6733936059627217,1.0512334797946792,0.14588486163032824,,,94,,,,,,,,10.0,0.3193801440329218
+X11 Coleman and Li (2026) contribution types: see tables/coleman_li_types.csv,,,,,,262,,,,,,,,6.0,
+X12 Bangladesh by mission against the reported UN letter: see tables/bangladesh_letter.csv,,,,,,9,,,,,,,,,

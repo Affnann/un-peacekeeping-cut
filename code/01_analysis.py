@@ -235,10 +235,11 @@ def main():
     r, *_ = run_tests(c, "C5 without separately decided drawdowns (P)", t0, t1, my, P_CATS, milex, gdppc,
                       exclude_missions=C5_MISSIONS)
     reg_rows += r
+    # C6 covers H1 and H2 only; H2 includes its split into the exposure and within-mission parts
     r, *_ = run_tests(c, "C6 unweighted (P)", t0, t1, my, P_CATS, milex, gdppc, weighted=False)
-    reg_rows += [x for x in r if x["test"].startswith("H1") or x["test"].startswith("H2 total")]
+    reg_rows += [x for x in r if x["test"].startswith("H1") or x["test"].startswith("H2")]
     r, *_ = run_tests(c, "C6 threshold 20 (P)", t0, t1, my, P_CATS, milex, gdppc, min_country=20)
-    reg_rows += [x for x in r if x["test"].startswith("H1") or x["test"].startswith("H2 total")]
+    reg_rows += [x for x in r if x["test"].startswith("H1") or x["test"].startswith("H2")]
 
     reg = pd.DataFrame(reg_rows)
     reg.to_csv(TABLES / "regressions.csv", index=False)

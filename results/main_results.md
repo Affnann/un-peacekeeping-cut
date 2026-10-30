@@ -47,8 +47,12 @@ C5 without separately decided drawdowns (P)               H2 within-mission part
 C5 without separately decided drawdowns (P)              H3 cell pct on ln D, mission FE -1.776367 1.184395 1.336636e-01 -4.097738  0.545004 0.090599 56         7.0
                           C6 unweighted (P)                       H1 pct on exposure pct  1.044360 0.130718 1.355790e-15  0.788157  1.300562 0.115230 55         NaN
                           C6 unweighted (P)                             H2 total on ln D -1.273405 1.475770 3.882062e-01 -4.165862  1.619051 0.017757 53         NaN
+                          C6 unweighted (P)                     H2 exposure part on ln D -1.056993 0.416961 1.124493e-02 -1.874220 -0.239765 0.115425 53         NaN
+                          C6 unweighted (P)               H2 within-mission part on ln D -0.216413 1.387975 8.760964e-01 -2.936794  2.503969 0.000580 53         NaN
                         C6 threshold 20 (P)                       H1 pct on exposure pct  1.129364 0.146833 1.454503e-14  0.841576  1.417152 0.121871 82         NaN
                         C6 threshold 20 (P)                             H2 total on ln D -1.979754 0.467969 2.331497e-05 -2.896957 -1.062551 0.108310 59         NaN
+                        C6 threshold 20 (P)                     H2 exposure part on ln D -0.639071 0.192741 9.141372e-04 -1.016836 -0.261306 0.115417 59         NaN
+                        C6 threshold 20 (P)               H2 within-mission part on ln D -1.340683 0.536328 1.242829e-02 -2.391867 -0.289499 0.056423 59         NaN
 
 ## Missions (main)
 

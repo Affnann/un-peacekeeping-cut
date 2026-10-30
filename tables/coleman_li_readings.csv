@@ -1,0 +1,14 @@
+type,reading,contributions,mil_2025_06,mil_2026_07,pct,median_pct,ended
+1 top 10,main,44,33567,24514,-26.9699,-26.2619,0
+2 other,main,64,18616,13638,-26.7404,-21.0541,0
+3 token,main,154,617,399,-35.3323,-33.3333,16
+4 all,main,262,52800,38551,-26.9867,-31.4634,16
+1 top 10,token limit of 10 applied separately,44,33567,24514,-26.9699,-26.2619,0
+2 other,token limit of 10 applied separately,57,18531,13600,-26.6095,-20.1031,0
+3 token,token limit of 10 applied separately,161,702,437,-37.7493,-33.3333,16
+4 all,token limit of 10 applied separately,262,52800,38551,-26.9867,-31.4634,16
+1 top 10,Tanzania also counted as a top contributor,49,35072,25507,-27.2725,-26.7442,0
+2 other,Tanzania also counted as a top contributor,61,17122,12652,-26.1068,-20.6395,0
+3 token,Tanzania also counted as a top contributor,152,606,392,-35.3135,-33.3333,16
+4 all,Tanzania also counted as a top contributor,262,52800,38551,-26.9867,-31.4634,16
+5 only in July 2026,main,4,0,5,,,0
