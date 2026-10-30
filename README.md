@@ -1,6 +1,8 @@
 # un-peacekeeping-cut
 
-Replication package for the working paper *The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data* (Kazi Affnann Azom, 2026).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23801844.svg)](https://doi.org/10.5281/zenodo.23801844)
+
+Replication package for Kazi Affnann Azom (2026), "The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data." Preprint, Zenodo. [10.5281/zenodo.23801875](https://doi.org/10.5281/zenodo.23801875)
 
 Between June 2025 and July 2026 the number of uniformed personnel in UN missions fell by 16,480, or 26.9%, after the UN, short of cash because member states had not paid their contributions in full, told its peacekeeping missions in October 2025 to cut their spending by 15%. This package measures which contributing countries bore that cut, in people and in UN payments, and whether it fell harder on the countries that depend most on those payments.
 
@@ -55,6 +57,19 @@ python code/03_figures.py
 - Payments are amounts owed at the standard rate, not cash paid. They exclude contingent-owned equipment, and the UN often pays late.
 - Personnel are numbers as published by the UN; nothing is estimated or filled in.
 - The results describe who bore the cut, not why. UN documents say missions, with headquarters departments, determined which contingents would be repatriated; they do not say how they chose among contributors.
+
+## How to cite
+
+Azom, Kazi Affnann (2026). *un-peacekeeping-cut: replication package for 'The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops'* (Version v1.0.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.23801845
+
+- This version (v1.0.0): [10.5281/zenodo.23801845](https://doi.org/10.5281/zenodo.23801845)
+- All versions (always points to the latest): [10.5281/zenodo.23801844](https://doi.org/10.5281/zenodo.23801844)
+
+To cite the paper:
+
+Azom, Kazi Affnann (2026). *The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data* [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.23801875
+
+See also `CITATION.cff`.
 
 ## License
 

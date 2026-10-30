@@ -1,5 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or these tables, please cite it as below."
+type: software
 title: "un-peacekeeping-cut: replication package for 'The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops'"
 authors:
   - family-names: "Azom"
@@ -7,7 +8,18 @@ authors:
     orcid: "https://orcid.org/0009-0001-5998-7642"
 repository-code: "https://github.com/Affnann/un-peacekeeping-cut"
 version: "1.0.0"
-license: MIT
+date-released: "2026-10-30"
+doi: "10.5281/zenodo.23801845"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23801845"
+    description: "This version (v1.0.0)"
+  - type: doi
+    value: "10.5281/zenodo.23801844"
+    description: "Concept DOI for all versions"
+license:
+  - MIT
+  - CC-BY-4.0
 keywords:
   - UN peacekeeping
   - troop-contributing countries
@@ -17,6 +29,17 @@ keywords:
   - Bangladesh
   - replication package
 references:
+  - type: article
+    title: "The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data"
+    authors:
+      - family-names: "Azom"
+        given-names: "Kazi Affnann"
+        orcid: "https://orcid.org/0009-0001-5998-7642"
+    year: 2026
+    status: preprint
+    publisher:
+      name: "Zenodo"
+    doi: "10.5281/zenodo.23801875"
   - type: article
     authors:
       - family-names: "Coleman"
