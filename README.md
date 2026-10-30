@@ -9,7 +9,8 @@ Between June 2025 and July 2026 the number of uniformed personnel in UN missions
 - **The cut fell harder on the countries most dependent on UN payments.** A country whose payments were ten times larger relative to its military budget lost about 4.6 percentage points more of its personnel (coefficient on ln *D* = -2.01, 95% interval -2.94 to -1.07). About a third of this came from the missions such countries served in, and two-thirds from within-mission differences: within the same mission, their contingents were cut more.
 - **Missions explain little of the variation between countries.** The four largest missions were each cut by 24% to 33%, so the change predicted from a country's missions varies little; the weighted R² of the actual on the predicted change is 0.12, below the 0.5 the analysis plan set, so H1 fails.
 - **The money.** At the UN's standard rate of US$1,448 per person per month, payments owed to contributing governments fell by US$259.6 million a year. Rwanda's lost payments equal 17.4% of its 2024 military spending, Nepal's 7.1% and Ghana's 4.2%. Bangladesh's fell by US$28.0 million a year (0.75%).
-- **Checks.** The results hold from a September 2025 baseline, for troops and formed police units only, with a size control, and without South Africa or the most dependent countries. A placebo over the 13 months before the cut shows none of the patterns. Unweighted, the dependence gradient is not significant: it is a feature of the large contingents.
+- **The largest contributors were not shielded.** The ten largest contributors in June 2025 lost 27.1% of their personnel, about the same as the other countries with 100 or more (26.5%); countries with fewer than 20 lost 15.7%. For 2010–2024, [Coleman and Li (2026)](https://doi.org/10.1080/13523260.2026.2704869) found the largest and the token contributors relatively shielded from downsizing.
+- **Checks.** The results hold from a September 2025 baseline, for troops and formed police units only, with a size control, and without South Africa or the most dependent countries. A placebo over the 13 months before the cut shows no dependence gradient. Unweighted, the gradient is not significant: it is a feature of the large contingents.
 
 The analysis plan was written and published before any of these results were computed: [`plan/analysis_plan.md`](plan/analysis_plan.md) (first commit of this repository).
 
@@ -20,10 +21,10 @@ The analysis plan was written and published before any of these results were com
 | [`plan/analysis_plan.md`](plan/analysis_plan.md) | The dated analysis plan: question, definitions, hypotheses, checks |
 | [`code/00_get_un_data.py`](code/00_get_un_data.py) | Rebuilds the UN personnel data with peacekeeping-tracker v1.0.0 (downloads the UN's files from the UN) |
 | [`code/01_analysis.py`](code/01_analysis.py) | The analysis set out in the plan |
-| [`code/02_extra_checks.py`](code/02_extra_checks.py) | Three checks added after the main results were seen (labelled as such in the paper) |
+| [`code/02_extra_checks.py`](code/02_extra_checks.py) | Six checks added after the main results were seen (labelled as such in the paper and recorded in the plan's change log) |
 | [`code/03_figures.py`](code/03_figures.py) | The four figures |
 | [`data/worldbank/`](data/worldbank/) | World Bank military expenditure and GDP per capita files (CC BY 4.0), as downloaded on 29 October 2026 |
-| [`tables/`](tables/) | Summary tables: missions, categories, the 20 largest contributors, dependence groups, all regressions and checks |
+| [`tables/`](tables/) | Summary tables: missions, categories, the 20 largest contributors, dependence groups, size groups, all regressions and checks |
 | [`figures/`](figures/) | The figures (300 dpi) |
 | [`results/main_results.md`](results/main_results.md) | Every number the analysis computes, in one file |
 
