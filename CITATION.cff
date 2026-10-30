@@ -1,0 +1,66 @@
+cff-version: 1.2.0
+message: "If you use this code or these tables, please cite it as below."
+title: "un-peacekeeping-cut: replication package for 'The 2025-26 UN Peacekeeping Cuts and the Countries That Supply the Troops'"
+authors:
+  - family-names: "Azom"
+    given-names: "Kazi Affnann"
+    orcid: "https://orcid.org/0009-0001-5998-7642"
+repository-code: "https://github.com/Affnann/un-peacekeeping-cut"
+version: "1.0.0"
+license: MIT
+keywords:
+  - UN peacekeeping
+  - troop-contributing countries
+  - peacekeeping finance
+  - reimbursement
+  - burden sharing
+  - replication package
+references:
+  - type: article
+    authors:
+      - family-names: "Coleman"
+        given-names: "Katharina P."
+      - family-names: "Nyblade"
+        given-names: "Benjamin"
+    title: "Peacekeeping for profit? The scope and limits of 'mercenary' UN peacekeeping"
+    journal: "Journal of Peace Research"
+    volume: 55
+    issue: 6
+    start: 726
+    end: 741
+    year: 2018
+    doi: "10.1177/0022343318775784"
+  - type: article
+    authors:
+      - family-names: "Coleman"
+        given-names: "Katharina P."
+      - family-names: "Li"
+        given-names: "Xiaojun"
+    title: "Resisting troop reductions: How downsizing burdens are allocated as UN peacekeeping contracts"
+    journal: "Contemporary Security Policy"
+    volume: 47
+    issue: 4
+    start: 1115
+    end: 1148
+    year: 2026
+    doi: "10.1080/13523260.2026.2704869"
+  - type: software
+    authors:
+      - family-names: "Azom"
+        given-names: "Kazi Affnann"
+        orcid: "https://orcid.org/0009-0001-5998-7642"
+    title: "peacekeeping-tracker: monthly UN uniformed personnel contributions by country, 1990-2026"
+    version: "v1.0.0"
+    year: 2026
+    doi: "10.5281/zenodo.23752307"
+    repository-code: "https://github.com/Affnann/peacekeeping-tracker"
+  - type: software
+    authors:
+      - family-names: "Azom"
+        given-names: "Kazi Affnann"
+        orcid: "https://orcid.org/0009-0001-5998-7642"
+    title: "peacekeeping-for-profit-update: UN peacekeeping contributions, military capacity and UN reimbursements by country, 1990-2026"
+    version: "v1.0.0"
+    year: 2026
+    doi: "10.5281/zenodo.23768250"
+    repository-code: "https://github.com/Affnann/peacekeeping-for-profit-update"

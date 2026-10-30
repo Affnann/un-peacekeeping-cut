@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import matplotlib
+import matplotlib.ticker
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -72,9 +73,15 @@ r = sm.WLS(s["pct"], X, weights=s["x0"]).fit()
 xs = np.linspace(np.log(s["D"].min()), np.log(s["D"].max()), 50)
 ax.plot(np.exp(xs), r.params["const"] + r.params["D"] * xs, color=INK, lw=1.2)
 for iso in ["RWA", "NPL", "GHA", "BGD", "IND", "CHN", "ZAF", "PAK", "IDN", "URY"]:
-    if iso in s.index:
+    if iso not in s.index:
+        continue
+    if iso == "PAK":  # a leader line, so the label is not read as Morocco's circle next to it
+        ax.annotate(iso, (s.loc[iso, "D"], s.loc[iso, "pct"]), fontsize=7, textcoords="offset points", xytext=(-4, 16),
+                    ha="center", arrowprops=dict(arrowstyle="-", lw=0.5, color="#555555", shrinkA=0, shrinkB=4))
+    else:
         ax.annotate(iso, (s.loc[iso, "D"], s.loc[iso, "pct"]), fontsize=7, xytext=(4, 2), textcoords="offset points")
 ax.set_xscale("log")
+ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
 ax.set_xlabel("Baseline UN payments as % of 2024 military spending (log scale)")
 ax.set_ylabel("Change in personnel (%)")
 ax.axhline(0, color="#CCCCCC", lw=0.8)
