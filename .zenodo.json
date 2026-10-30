@@ -1,0 +1,34 @@
+{
+  "title": "un-peacekeeping-cut: replication package for 'The 2025-26 UN Peacekeeping Cuts and the Countries That Supply the Troops'",
+  "upload_type": "software",
+  "version": "v1.0.0",
+  "description": "<p>Replication package for Kazi Affnann Azom (2026), \"The 2025-26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data.\" It measures which contributing countries bore the reduction in UN uniformed personnel between June 2025 and July 2026, in people and in standard-rate UN payments, and whether it fell harder on the countries that depend most on those payments. The code rebuilds the UN's monthly personnel data with peacekeeping-tracker v1.0.0 (the UN's terms of use do not allow its files to be redistributed, so they are downloaded from the UN), and uses World Bank military expenditure and GDP per capita data as compiled in peacekeeping-for-profit-update v1.0.0. The package includes the dated analysis plan, written before any result was computed, the analysis code, summary tables, figures and documentation.</p><p>Code: MIT (see LICENSE). Tables, figures and documentation: CC BY 4.0 (see LICENSE-DATA). The World Bank files are CC BY 4.0; the UN data keep the UN's terms of use.</p>",
+  "creators": [
+    {
+      "name": "Azom, Kazi Affnann",
+      "orcid": "0009-0001-5998-7642"
+    }
+  ],
+  "license": "mit",
+  "keywords": [
+    "UN peacekeeping",
+    "troop-contributing countries",
+    "peacekeeping finance",
+    "reimbursement",
+    "burden sharing",
+    "Bangladesh",
+    "replication package"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23752307",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.23768250",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ]
+}
