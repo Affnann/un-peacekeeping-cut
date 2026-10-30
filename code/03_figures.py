@@ -46,6 +46,8 @@ mis = mis.sort_values("pct")
 fig, ax = plt.subplots(figsize=(6.5, 3.6))
 ax.barh(mis.index, mis["pct"], color=[ACCENT if p <= -20 else GREY for p in mis["pct"]])
 def pct_label(p):
+    if 0 < abs(p) < 1:  # one decimal for small changes, so -0.5% does not show as 0%
+        return ("−" if p < 0 else "") + f"{abs(p):.1f}%"
     v = round(p)
     return ("−" if v < 0 else "") + f"{abs(v):.0f}%"
 
@@ -72,11 +74,13 @@ X = sm.add_constant(np.log(s["D"]))
 r = sm.WLS(s["pct"], X, weights=s["x0"]).fit()
 xs = np.linspace(np.log(s["D"].min()), np.log(s["D"].max()), 50)
 ax.plot(np.exp(xs), r.params["const"] + r.params["D"] * xs, color=INK, lw=1.2)
-for iso in ["RWA", "NPL", "GHA", "BGD", "IND", "CHN", "ZAF", "PAK", "IDN", "URY"]:
+# Labels with a leader line where a plain label would sit on a neighbouring circle
+LEADER = {"PAK": (-4, 16), "URY": (-22, 10), "MWI": (0, 12)}  # offsets in points
+for iso in ["RWA", "NPL", "GHA", "BGD", "IND", "CHN", "ZAF", "PAK", "IDN", "URY", "MWI"]:
     if iso not in s.index:
         continue
-    if iso == "PAK":  # a leader line, so the label is not read as Morocco's circle next to it
-        ax.annotate(iso, (s.loc[iso, "D"], s.loc[iso, "pct"]), fontsize=7, textcoords="offset points", xytext=(-4, 16),
+    if iso in LEADER:
+        ax.annotate(iso, (s.loc[iso, "D"], s.loc[iso, "pct"]), fontsize=7, textcoords="offset points", xytext=LEADER[iso],
                     ha="center", arrowprops=dict(arrowstyle="-", lw=0.5, color="#555555", shrinkA=0, shrinkB=4))
     else:
         ax.annotate(iso, (s.loc[iso, "D"], s.loc[iso, "pct"]), fontsize=7, xytext=(4, 2), textcoords="offset points")
@@ -93,12 +97,13 @@ plt.close(fig)
 # Figure 4: burden relative to military spending, top 15
 b = cty[cty["B"].notna()].sort_values("B", ascending=False).head(15).copy()
 names = c.drop_duplicates("iso3").set_index("iso3")["country"]
-b["name"] = names.reindex(b.index).str.replace("United Republic of Tanzania", "Tanzania")
+b["name"] = (names.reindex(b.index).str.replace("United Republic of Tanzania", "Tanzania")
+             .replace({"Congo": "Republic of the Congo"}))
 b = b.iloc[::-1]
 fig, ax = plt.subplots(figsize=(6.5, 4.0))
 ax.barh(b["name"], b["B"], color=ACCENT)
 for i, v in enumerate(b["B"]):
-    ax.text(v + 0.2, i, f"{v:.1f}", va="center", fontsize=8)
+    ax.text(v + 0.2, i, f"{v:.2f}", va="center", fontsize=8)
 ax.set_xlabel("Annual UN payments lost, % of 2024 military spending")
 fig.tight_layout()
 fig.savefig(FIG / "fig4_burden.png", dpi=300)

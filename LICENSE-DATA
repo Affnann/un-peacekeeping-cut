@@ -2,11 +2,17 @@ Data license
 
 Copyright (c) 2026 Kazi Affnann Azom
 
-The derived data in data/clean/ and output/, and the hand-built file
-data/raw/approx/afghanistan_troops_fy2018_2020_approx.csv, are licensed under
-the Creative Commons Attribution 4.0 International License (CC BY 4.0):
-https://creativecommons.org/licenses/by/4.0/
+The summary tables in tables/, the figures in figures/, the results in
+results/, the analysis plan in plan/ and the documentation in this repository
+are licensed under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
-The code is licensed separately under the MIT License (see LICENSE). The
-downloaded inputs in data/raw/ keep the terms of their sources (see
-data/README.md).
+The summary tables and figures are made from the UN's figures; please credit
+the United Nations (Peace and Security Data Hub) as well.
+
+The World Bank files in data/worldbank/ are the World Bank's, published under
+CC BY 4.0. The UN's own data files are not included in this repository: they
+are downloaded from the UN by code/00_get_un_data.py and keep the UN's terms
+of use.
+
+The code is licensed separately under the MIT License (see LICENSE).
