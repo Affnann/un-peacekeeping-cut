@@ -75,4 +75,4 @@ All tests are two-sided at the 5% level. Regressions are weighted least squares 
 
 ## Change log
 
-(none yet)
+- **30 October 2026, after the main results were seen.** No test, window, measure or check in sections 3 to 5 was changed. Added, and labelled in the paper as not in the plan: H2 with the logarithm of June 2025 personnel as a control; H2 without the four countries with *D* of 10% or more; H2 leaving out each of the ten largest contributors in turn; H1 and H2 without South Africa; and the placebo window (C3) with UNSOM and its successor UNTMIS counted as one mission (the mandate was transferred by Security Council resolution 2753 of 30 October 2024; the definitions above treat UNSOM as closing and UNTMIS as new). The p-values reported use the normal approximation, statsmodels' default for HC1 standard errors.

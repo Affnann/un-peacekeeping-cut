@@ -5,6 +5,9 @@ Each is labelled as such in tables/extra_checks.csv and in the paper:
   X2  H2 without the four countries with D of 10% or more (influence of the most dependent group)
   X3  H2 leaving out one country at a time among the 10 largest weights (influence)
   X4  H2 without South Africa, whose contingent fell by 93%
+  X5  H1 without South Africa (diagnostic for H1's low R-squared)
+  X6  Placebo C3 with UNSOM and its successor UNTMIS (S/RES/2753 (2024)) treated as one mission;
+      the plan's literal definitions treat UNSOM as closing and UNTMIS as new
 
 Usage: python code/02_extra_checks.py  (after code/01_analysis.py)
 """
@@ -41,6 +44,31 @@ for iso in s.sort_values("x0", ascending=False).head(10).index:
     rows.append({"check": f"X3 H2 without {iso}", "coef_lnD": r.params["lnD"], "se": r.bse["lnD"], "p": r.pvalues["lnD"], "n": int(r.nobs)})
 r = fit(s.drop(index="ZAF"), ["lnD"])
 rows.append({"check": "X4 H2 without ZAF", "coef_lnD": r.params["lnD"], "se": r.bse["lnD"], "p": r.pvalues["lnD"], "n": int(r.nobs)})
+
+# X5: H1 without South Africa
+h = cty[cty["x0"] >= 100].drop(index="ZAF")
+X = sm.add_constant(h[["E_pct"]].astype(float), has_constant="add")
+r = sm.WLS(h["pct"].astype(float), X, weights=h["x0"].astype(float)).fit(cov_type="HC1")
+rows.append({"check": "X5 H1 without ZAF", "coef_lnD": np.nan, "slope_H1": r.params["E_pct"], "se": r.bse["E_pct"],
+             "p": r.pvalues["E_pct"], "r2": r.rsquared, "n": int(r.nobs)})
+
+# X6: placebo with UNSOM and UNTMIS merged
+import importlib.util
+spec = importlib.util.spec_from_file_location("a", ROOT / "code" / "01_analysis.py")
+a = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(a)
+c = a.load_un()
+c = c.copy()
+c.loc[c["mission"].isin(["UNSOM", "UNTMIS"]), "mission"] = "UNSOM/UNTMIS"
+milex = a.load_wb("MS.MIL.XPND.CD")
+gdppc = a.load_wb("NY.GDP.PCAP.CD")
+t0, t1, yr = a.WINDOWS["C3_placebo"]
+res, *_ = a.run_tests(c, "X6 placebo, UNSOM and UNTMIS merged (P)", t0, t1, yr, a.P_CATS, milex, gdppc)
+for x in res:
+    if x["test"].startswith("H1") or x["test"].startswith("H2 total") or x["test"].startswith("H3"):
+        rows.append({"check": f"X6 {x['test']}", "coef_lnD": x["coef"] if not x["test"].startswith("H1") else np.nan,
+                     "slope_H1": x["coef"] if x["test"].startswith("H1") else np.nan,
+                     "se": x["se"], "p": x["p"], "r2": x["r2"], "n": x["n"]})
 
 out = pd.DataFrame(rows)
 (ROOT / "tables").mkdir(exist_ok=True)
