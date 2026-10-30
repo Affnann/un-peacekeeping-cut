@@ -1,0 +1,48 @@
+"""Checks added after the main results were seen (NOT in the analysis plan).
+
+Each is labelled as such in tables/extra_checks.csv and in the paper:
+  X1  H2 with ln P_c0 (contingent size) as a control: is it dependence or just size?
+  X2  H2 without the four countries with D of 10% or more (influence of the most dependent group)
+  X3  H2 leaving out one country at a time among the 10 largest weights (influence)
+  X4  H2 without South Africa, whose contingent fell by 93%
+
+Usage: python code/02_extra_checks.py  (after code/01_analysis.py)
+"""
+
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+
+ROOT = Path(__file__).resolve().parents[1]
+cty = pd.read_csv(ROOT / "data" / "build" / "country_changes_main.csv", index_col="iso3")
+s = cty[(cty["x0"] >= 100) & cty["D"].notna() & (cty["D"] > 0)].copy()
+s["lnD"] = np.log(s["D"])
+s["lnP0"] = np.log(s["x0"])
+
+
+def fit(df, xcols):
+    X = sm.add_constant(df[xcols].astype(float), has_constant="add")
+    r = sm.WLS(df["pct"].astype(float), X, weights=df["x0"].astype(float)).fit(cov_type="HC1")
+    return r
+
+
+rows = []
+r = fit(s, ["lnD", "lnP0"])
+rows.append({"check": "X1 H2 with ln P0 control", "coef_lnD": r.params["lnD"], "se": r.bse["lnD"], "p": r.pvalues["lnD"],
+             "coef_lnP0": r.params["lnP0"], "p_lnP0": r.pvalues["lnP0"], "n": int(r.nobs)})
+s2 = s[s["D"] < 10]
+r = fit(s2, ["lnD"])
+rows.append({"check": "X2 H2 without D >= 10%", "coef_lnD": r.params["lnD"], "se": r.bse["lnD"], "p": r.pvalues["lnD"], "n": int(r.nobs),
+             "dropped": ",".join(sorted(s[s["D"] >= 10].index))})
+for iso in s.sort_values("x0", ascending=False).head(10).index:
+    r = fit(s.drop(index=iso), ["lnD"])
+    rows.append({"check": f"X3 H2 without {iso}", "coef_lnD": r.params["lnD"], "se": r.bse["lnD"], "p": r.pvalues["lnD"], "n": int(r.nobs)})
+r = fit(s.drop(index="ZAF"), ["lnD"])
+rows.append({"check": "X4 H2 without ZAF", "coef_lnD": r.params["lnD"], "se": r.bse["lnD"], "p": r.pvalues["lnD"], "n": int(r.nobs)})
+
+out = pd.DataFrame(rows)
+(ROOT / "tables").mkdir(exist_ok=True)
+out.to_csv(ROOT / "tables" / "extra_checks.csv", index=False)
+print(out.to_string(index=False))
