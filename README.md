@@ -1,0 +1,60 @@
+# un-peacekeeping-cut
+
+Replication package for the working paper *The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data* (Kazi Affnann Azom, 2026).
+
+Between June 2025 and July 2026 the number of uniformed personnel in UN missions fell by 16,480, or 26.9%, after the UN announced in October 2025 that a funding shortfall would force it to cut its peacekeepers. This package measures which contributing countries bore that cut, in people and in UN payments, and whether it fell harder on the countries that depend most on those payments.
+
+## Main results
+
+- **The cut fell harder on the countries most dependent on UN payments.** A country whose payments were ten times larger relative to its military budget lost about 4.6 percentage points more of its personnel (coefficient on ln *D* = -2.01, 95% interval -2.94 to -1.07). About a third of this came from the missions such countries served in, and two-thirds from within-mission differences: within the same mission, their contingents were cut more.
+- **Missions explain little of the variation between countries.** The four largest missions were each cut by 24% to 33%, so the change predicted from a country's missions varies little; the weighted R² of the actual on the predicted change is 0.12, below the 0.5 the analysis plan set, so H1 fails.
+- **The money.** At the UN's standard rate of US$1,448 per person per month, payments owed to contributing governments fell by US$259.6 million a year. Rwanda's lost payments equal 17.4% of its 2024 military spending, Nepal's 7.1% and Ghana's 4.2%. Bangladesh's fell by US$28.0 million a year (0.75%).
+- **Checks.** The results hold from a September 2025 baseline, for troops and formed police units only, with a size control, and without South Africa or the most dependent countries. A placebo over the 13 months before the cut shows none of the patterns. Unweighted, the dependence gradient is not significant: it is a feature of the large contingents.
+
+The analysis plan was written and published before any of these results were computed: [`plan/analysis_plan.md`](plan/analysis_plan.md) (first commit of this repository).
+
+## What is in this repository
+
+| Path | Contents |
+|---|---|
+| [`plan/analysis_plan.md`](plan/analysis_plan.md) | The dated analysis plan: question, definitions, hypotheses, checks |
+| [`code/00_get_un_data.py`](code/00_get_un_data.py) | Rebuilds the UN personnel data with peacekeeping-tracker v1.0.0 (downloads the UN's files from the UN) |
+| [`code/01_analysis.py`](code/01_analysis.py) | The analysis set out in the plan |
+| [`code/02_extra_checks.py`](code/02_extra_checks.py) | Three checks added after the main results were seen (labelled as such in the paper) |
+| [`code/03_figures.py`](code/03_figures.py) | The four figures |
+| [`data/worldbank/`](data/worldbank/) | World Bank military expenditure and GDP per capita files (CC BY 4.0), as downloaded on 29 October 2026 |
+| [`tables/`](tables/) | Summary tables: missions, categories, the 20 largest contributors, dependence groups, all regressions and checks |
+| [`figures/`](figures/) | The figures (300 dpi) |
+| [`results/main_results.md`](results/main_results.md) | Every number the analysis computes, in one file |
+
+## Why the full UN dataset is not here
+
+The UN's terms of use allow its data to be downloaded for personal, non-commercial use, but not redistributed. This repository therefore contains no UN files and no full country table. `code/00_get_un_data.py` downloads the files from the UN and rebuilds them with peacekeeping-tracker v1.0.0, whose own checks confirm the rebuild matches its release.
+
+## Reproduce it
+
+Needs Python 3.10 or later, git and an internet connection.
+
+```
+pip install -r requirements.txt
+python code/00_get_un_data.py
+python code/01_analysis.py
+python code/02_extra_checks.py
+python code/03_figures.py
+```
+
+## Data sources
+
+- United Nations, Peace and Security Data Hub: "Historical Uniformed Personnel Contribution" (DPO-UCHISTORICAL), via peacekeeping-tracker v1.0.0 (https://doi.org/10.5281/zenodo.23752307).
+- World Bank, World Development Indicators: military expenditure, current US$ (MS.MIL.XPND.CD, based on SIPRI) and GDP per capita, current US$ (NY.GDP.PCAP.CD), as compiled in peacekeeping-for-profit-update v1.0.0 (https://doi.org/10.5281/zenodo.23768250). CC BY 4.0.
+- UN standard reimbursement rate: General Assembly resolution 76/276 (29 June 2022), paragraph 9: US$1,448 per person per month from 1 July 2022.
+
+## Read this first
+
+- Payments are amounts owed at the standard rate, not cash paid. They exclude contingent-owned equipment, and the UN often pays late.
+- Personnel are numbers as published by the UN; nothing is estimated or filled in.
+- The results describe who bore the cut, not who decided it: the data cannot show whether a contingent left because the UN chose it or because its government did.
+
+## License
+
+Code: MIT (see [`LICENSE`](LICENSE)). Tables, figures and text: CC BY 4.0. The World Bank files: CC BY 4.0. The summary tables are made from the UN's figures; please credit the UN as well.
