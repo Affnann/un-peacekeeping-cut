@@ -8,6 +8,8 @@ Each is labelled as such in tables/extra_checks.csv and in the paper:
   X5  H1 without South Africa (diagnostic for H1's low R-squared)
   X6  Placebo C3 with UNSOM and its successor UNTMIS (S/RES/2753 (2024)) treated as one mission;
       the plan's literal definitions treat UNSOM as closing and UNTMIS as new
+  X7  The cut by contributor size (top 10 by June 2025 personnel; other countries with 100 or more;
+      20 to 99; under 20), and a weighted quadratic in ln P_c0, to compare with Coleman and Li (2026)
 
 Usage: python code/02_extra_checks.py  (after code/01_analysis.py)
 """
@@ -69,6 +71,23 @@ for x in res:
         rows.append({"check": f"X6 {x['test']}", "coef_lnD": x["coef"] if not x["test"].startswith("H1") else np.nan,
                      "slope_H1": x["coef"] if x["test"].startswith("H1") else np.nan,
                      "se": x["se"], "p": x["p"], "r2": x["r2"], "n": x["n"]})
+
+# X7: size groups and a quadratic in ln P0
+a7 = cty[cty["x0"] > 0].sort_values("x0", ascending=False).copy()
+a7["rank"] = np.arange(1, len(a7) + 1)
+a7["size_group"] = np.select(
+    [a7["rank"] <= 10, a7["x0"] >= 100, a7["x0"] >= 20],
+    ["1 top 10", "2 other, 100 or more", "3 20 to 99"], default="4 under 20")
+sg = a7.groupby("size_group").agg(countries=("x0", "size"), P0=("x0", "sum"), P1=("x1", "sum"), median_pct=("pct", "median"))
+sg["pct"] = 100 * (sg["P1"] - sg["P0"]) / sg["P0"]
+sg.to_csv(ROOT / "tables" / "size_groups.csv")
+q = cty[cty["x0"] >= 100].copy()
+q["lnP0"] = np.log(q["x0"])
+q["lnP0sq"] = q["lnP0"] ** 2
+X = sm.add_constant(q[["lnP0", "lnP0sq"]].astype(float), has_constant="add")
+r = sm.WLS(q["pct"].astype(float), X, weights=q["x0"].astype(float)).fit(cov_type="HC1")
+rows.append({"check": "X7 weighted quadratic in ln P0", "coef_lnP0": r.params["lnP0"], "p_lnP0": r.pvalues["lnP0"],
+             "coef_lnP0sq": r.params["lnP0sq"], "p_lnP0sq": r.pvalues["lnP0sq"], "n": int(r.nobs)})
 
 out = pd.DataFrame(rows)
 (ROOT / "tables").mkdir(exist_ok=True)
