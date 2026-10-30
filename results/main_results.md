@@ -15,35 +15,40 @@ Main-sample countries without 2024 military spending: ['BTN', 'DJI']
 
 ## Regressions
 
-               spec                                         test      coef       se            p     ci_lo     ci_hi       r2  n  n_missions
-           main (P)                       H1 pct on exposure pct  1.105023 0.146967 5.525948e-14  0.816973  1.393073 0.119685 55         NaN
-           main (P)                             H2 total on ln D -2.007542 0.478220 2.693475e-05 -2.944836 -1.070248 0.110068 53         NaN
-           main (P)                     H2 exposure part on ln D -0.646382 0.198071 1.100920e-03 -1.034595 -0.258169 0.116103 53         NaN
-           main (P)               H2 within-mission part on ln D -1.361159 0.547734 1.295244e-02 -2.434698 -0.287621 0.057428 53         NaN
-           main (P)              H3 cell pct on ln D, mission FE -1.673394 0.666997 1.211261e-02 -2.980684 -0.366103 0.207551 94        10.0
-     C1_sep2025 (P)                       H1 pct on exposure pct  1.000119 0.200386 6.007912e-07  0.607370  1.392869 0.132385 55         NaN
-     C1_sep2025 (P)                             H2 total on ln D -2.089053 0.476677 1.173091e-05 -3.023323 -1.154782 0.121588 53         NaN
-     C1_sep2025 (P)                     H2 exposure part on ln D -0.667220 0.258422 9.825806e-03 -1.173718 -0.160722 0.093296 53         NaN
-     C1_sep2025 (P)               H2 within-mission part on ln D -1.421833 0.557631 1.077920e-02 -2.514769 -0.328897 0.064969 53         NaN
-     C1_sep2025 (P)              H3 cell pct on ln D, mission FE -1.731846 0.678725 1.072245e-02 -3.062123 -0.401569 0.217954 93        10.0
-     C3_placebo (P)                       H1 pct on exposure pct  0.094562 0.146710 5.192204e-01 -0.192985  0.382109 0.025424 55         NaN
-     C3_placebo (P)                             H2 total on ln D -0.043498 0.334125 8.964196e-01 -0.698370  0.611374 0.000273 53         NaN
-     C3_placebo (P)                     H2 exposure part on ln D  0.096708 0.284224 7.336664e-01 -0.460361  0.653776 0.000471 53         NaN
-     C3_placebo (P)               H2 within-mission part on ln D -0.140206 0.244024 5.655906e-01 -0.618485  0.338073 0.000852 53         NaN
-     C3_placebo (P)              H3 cell pct on ln D, mission FE -0.118021 0.341425 7.295905e-01 -0.787202  0.551161 0.697544 96        11.0
-  C2 contingent (K)                       H1 pct on exposure pct  1.007822 0.147135 7.404083e-12  0.719442  1.296202 0.106498 54         NaN
-  C2 contingent (K)                             H2 total on ln D -2.158773 0.474540 5.385209e-06 -3.088854 -1.228692 0.118311 52         NaN
-  C2 contingent (K)                     H2 exposure part on ln D -0.603076 0.215913 5.219748e-03 -1.026257 -0.179895 0.087939 52         NaN
-  C2 contingent (K)               H2 within-mission part on ln D -1.555697 0.555209 5.078677e-03 -2.643887 -0.467507 0.068758 52         NaN
-  C2 contingent (K)              H3 cell pct on ln D, mission FE -1.760614 0.680756 9.702333e-03 -3.094871 -0.426356 0.207077 93        10.0
-      C4 income (P)                H2 total on ln GDP per capita  2.899242 1.483369 5.064228e-02 -0.008107  5.806591 0.048273 55         NaN
-      C4 income (P)        H2 exposure part on ln GDP per capita  0.896783 0.462256 5.237781e-02 -0.009221  1.802788 0.047121 55         NaN
-      C4 income (P)  H2 within-mission part on ln GDP per capita  2.002458 1.413714 1.566432e-01 -0.768371  4.773288 0.026127 55         NaN
-      C4 income (P) H3 cell pct on ln GDP per capita, mission FE  2.967089 2.103973 1.584713e-01 -1.156622  7.090801 0.189138 98        10.0
-  C6 unweighted (P)                       H1 pct on exposure pct  1.044360 0.130718 1.355790e-15  0.788157  1.300562 0.115230 55         NaN
-  C6 unweighted (P)                             H2 total on ln D -1.273405 1.475770 3.882062e-01 -4.165862  1.619051 0.017757 53         NaN
-C6 threshold 20 (P)                       H1 pct on exposure pct  1.129364 0.146833 1.454503e-14  0.841576  1.417152 0.121871 82         NaN
-C6 threshold 20 (P)                             H2 total on ln D -1.979754 0.467969 2.331497e-05 -2.896957 -1.062551 0.108310 59         NaN
+                                       spec                                         test      coef       se            p     ci_lo     ci_hi       r2  n  n_missions
+                                   main (P)                       H1 pct on exposure pct  1.105023 0.146967 5.525948e-14  0.816973  1.393073 0.119685 55         NaN
+                                   main (P)                             H2 total on ln D -2.007542 0.478220 2.693475e-05 -2.944836 -1.070248 0.110068 53         NaN
+                                   main (P)                     H2 exposure part on ln D -0.646382 0.198071 1.100920e-03 -1.034595 -0.258169 0.116103 53         NaN
+                                   main (P)               H2 within-mission part on ln D -1.361159 0.547734 1.295244e-02 -2.434698 -0.287621 0.057428 53         NaN
+                                   main (P)              H3 cell pct on ln D, mission FE -1.673394 0.666997 1.211261e-02 -2.980684 -0.366103 0.207551 94        10.0
+                             C1_sep2025 (P)                       H1 pct on exposure pct  1.000119 0.200386 6.007912e-07  0.607370  1.392869 0.132385 55         NaN
+                             C1_sep2025 (P)                             H2 total on ln D -2.089053 0.476677 1.173091e-05 -3.023323 -1.154782 0.121588 53         NaN
+                             C1_sep2025 (P)                     H2 exposure part on ln D -0.667220 0.258422 9.825806e-03 -1.173718 -0.160722 0.093296 53         NaN
+                             C1_sep2025 (P)               H2 within-mission part on ln D -1.421833 0.557631 1.077920e-02 -2.514769 -0.328897 0.064969 53         NaN
+                             C1_sep2025 (P)              H3 cell pct on ln D, mission FE -1.731846 0.678725 1.072245e-02 -3.062123 -0.401569 0.217954 93        10.0
+                             C3_placebo (P)                       H1 pct on exposure pct  0.094562 0.146710 5.192204e-01 -0.192985  0.382109 0.025424 55         NaN
+                             C3_placebo (P)                             H2 total on ln D -0.043498 0.334125 8.964196e-01 -0.698370  0.611374 0.000273 53         NaN
+                             C3_placebo (P)                     H2 exposure part on ln D  0.096708 0.284224 7.336664e-01 -0.460361  0.653776 0.000471 53         NaN
+                             C3_placebo (P)               H2 within-mission part on ln D -0.140206 0.244024 5.655906e-01 -0.618485  0.338073 0.000852 53         NaN
+                             C3_placebo (P)              H3 cell pct on ln D, mission FE -0.118021 0.341425 7.295905e-01 -0.787202  0.551161 0.697544 96        11.0
+                          C2 contingent (K)                       H1 pct on exposure pct  1.007822 0.147135 7.404083e-12  0.719442  1.296202 0.106498 54         NaN
+                          C2 contingent (K)                             H2 total on ln D -2.158773 0.474540 5.385209e-06 -3.088854 -1.228692 0.118311 52         NaN
+                          C2 contingent (K)                     H2 exposure part on ln D -0.603076 0.215913 5.219748e-03 -1.026257 -0.179895 0.087939 52         NaN
+                          C2 contingent (K)               H2 within-mission part on ln D -1.555697 0.555209 5.078677e-03 -2.643887 -0.467507 0.068758 52         NaN
+                          C2 contingent (K)              H3 cell pct on ln D, mission FE -1.760614 0.680756 9.702333e-03 -3.094871 -0.426356 0.207077 93        10.0
+                              C4 income (P)                H2 total on ln GDP per capita  2.899242 1.483369 5.064228e-02 -0.008107  5.806591 0.048273 55         NaN
+                              C4 income (P)        H2 exposure part on ln GDP per capita  0.896783 0.462256 5.237781e-02 -0.009221  1.802788 0.047121 55         NaN
+                              C4 income (P)  H2 within-mission part on ln GDP per capita  2.002458 1.413714 1.566432e-01 -0.768371  4.773288 0.026127 55         NaN
+                              C4 income (P) H3 cell pct on ln GDP per capita, mission FE  2.967089 2.103973 1.584713e-01 -1.156622  7.090801 0.189138 98        10.0
+C5 without separately decided drawdowns (P)                       H1 pct on exposure pct  1.473268 0.528007 5.266835e-03  0.438394  2.508143 0.117835 39         NaN
+C5 without separately decided drawdowns (P)                             H2 total on ln D -1.913300 0.972165 4.905870e-02 -3.818708 -0.007891 0.044278 39         NaN
+C5 without separately decided drawdowns (P)                     H2 exposure part on ln D -0.204776 0.231815 3.770421e-01 -0.659124  0.249573 0.009343 39         NaN
+C5 without separately decided drawdowns (P)               H2 within-mission part on ln D -1.708524 0.937472 6.838216e-02 -3.545936  0.128887 0.039480 39         NaN
+C5 without separately decided drawdowns (P)              H3 cell pct on ln D, mission FE -1.776367 1.184395 1.336636e-01 -4.097738  0.545004 0.090599 56         7.0
+                          C6 unweighted (P)                       H1 pct on exposure pct  1.044360 0.130718 1.355790e-15  0.788157  1.300562 0.115230 55         NaN
+                          C6 unweighted (P)                             H2 total on ln D -1.273405 1.475770 3.882062e-01 -4.165862  1.619051 0.017757 53         NaN
+                        C6 threshold 20 (P)                       H1 pct on exposure pct  1.129364 0.146833 1.454503e-14  0.841576  1.417152 0.121871 82         NaN
+                        C6 threshold 20 (P)                             H2 total on ln D -1.979754 0.467969 2.331497e-05 -2.896957 -1.062551 0.108310 59         NaN
 
 ## Missions (main)
 
