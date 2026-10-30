@@ -2,17 +2,21 @@ Data license
 
 Copyright (c) 2026 Kazi Affnann Azom
 
-The summary tables in tables/, the figures in figures/, the results in
-results/, the analysis plan in plan/ and the documentation in this repository
-are licensed under the Creative Commons Attribution 4.0 International License
-(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+The author's own material in this repository (the text and documentation, the
+analysis plan in plan/, the results in results/, the figures in figures/ and
+the calculated summary tables in tables/) is licensed under the Creative
+Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
 
-The summary tables and figures are made from the UN's figures; please credit
-the United Nations (Peace and Security Data Hub) as well.
+The summary tables and figures are calculated from UN data. This license
+covers only the author's contribution to them; it does not change the terms
+that apply to the UN's data, which remain subject to the UN's terms of use.
+Please credit the United Nations (Peace and Security Data Hub) as well.
+
+The UN's own data files are not included in this repository: they are
+downloaded from the UN by code/00_get_un_data.py.
 
 The World Bank files in data/worldbank/ are the World Bank's, published under
-CC BY 4.0. The UN's own data files are not included in this repository: they
-are downloaded from the UN by code/00_get_un_data.py and keep the UN's terms
-of use.
+CC BY 4.0.
 
 The code is licensed separately under the MIT License (see LICENSE).

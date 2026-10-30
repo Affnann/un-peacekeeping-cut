@@ -7,8 +7,8 @@ Each is labelled as such in tables/extra_checks.csv and in the paper:
       (11 countries: Ethiopia and Tanzania tie for tenth place with 1,533 each; ties share the rank)
   X4  H2 without South Africa, whose contingent fell by 93%
   X5  H1 without South Africa (diagnostic for H1's low R-squared)
-  X6  Placebo C3 with UNSOM and its successor UNTMIS (S/RES/2753 (2024)) treated as one mission;
-      the plan's literal definitions treat UNSOM as closing and UNTMIS as new
+  X6  Placebo C3 with UNSOM and UNTMIS treated as one mission: S/RES/2753 (2024), para. 2, renamed UNSOM
+      as UNTMIS from 1 November 2024; the plan's literal definitions treat UNSOM as closing and UNTMIS as new
   X7  The cut by contributor size (the 10 largest by June 2025 personnel, 11 countries because of the tie;
       other countries with 100 or more; 20 to 99; under 20), and a weighted quadratic in ln P_c0 with a
       joint Wald test of its two terms, to compare with Coleman and Li (2026)

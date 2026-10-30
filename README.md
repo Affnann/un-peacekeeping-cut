@@ -58,4 +58,4 @@ python code/03_figures.py
 
 ## License
 
-Code: MIT (see [`LICENSE`](LICENSE)). Tables, figures, results and text: CC BY 4.0 (see [`LICENSE-DATA`](LICENSE-DATA)). The World Bank files: CC BY 4.0. The summary tables are made from the UN's figures; please credit the UN as well.
+Code: MIT (see [`LICENSE`](LICENSE)). The author's text, plan, results, figures and calculated tables: CC BY 4.0 (see [`LICENSE-DATA`](LICENSE-DATA)); this covers only the author's contribution and does not change the UN's terms of use for the UN data the tables and figures are calculated from. The World Bank files: CC BY 4.0. Please credit the UN as well.

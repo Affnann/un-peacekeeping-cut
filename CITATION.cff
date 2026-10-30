@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or these tables, please cite it as below."
-title: "un-peacekeeping-cut: replication package for 'The 2025-26 UN Peacekeeping Cuts and the Countries That Supply the Troops'"
+title: "un-peacekeeping-cut: replication package for 'The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops'"
 authors:
   - family-names: "Azom"
     given-names: "Kazi Affnann"
@@ -14,6 +14,7 @@ keywords:
   - peacekeeping finance
   - reimbursement
   - burden sharing
+  - Bangladesh
   - replication package
 references:
   - type: article
