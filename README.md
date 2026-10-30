@@ -9,7 +9,7 @@ Between June 2025 and July 2026 the number of uniformed personnel in UN missions
 - **The cut fell harder on the countries most dependent on UN payments.** A country whose payments were ten times larger relative to its military budget lost about 4.6 percentage points more of its personnel (coefficient on ln *D* = -2.01, 95% interval -2.94 to -1.07). About a third of this came from the missions such countries served in, and two-thirds from within-mission differences: within the same mission, their contingents were cut more on average. At the level of country-mission cells this test is significant with heteroskedasticity-robust standard errors (p = 0.012) but not with standard errors clustered by mission (p = 0.146; wild cluster bootstrap p = 0.33), a check not in the plan.
 - **Missions explain little of the variation between countries.** The four largest missions were each cut by 24% to 33%, so the change predicted from a country's missions varies little; the weighted R² of the actual on the predicted change is 0.12, below the 0.5 the analysis plan set, so H1 fails.
 - **The money.** At the UN's standard rate of US$1,448 per person per month, payments owed to contributing governments fell by US$259.6 million a year. Rwanda's lost payments equal 17.4% of its 2024 military spending, Nepal's 7.1% and Ghana's 4.2%. Bangladesh's fell by US$28.0 million a year (0.75%).
-- **The largest contributors were not shielded** (a comparison added after the main results). The 11 largest contributors in June 2025 (Ethiopia and Tanzania tie for tenth place) lost 27.4% of their personnel, about the same as the other countries with 100 or more (26.0%); countries with fewer than 20 lost 15.7%. For 2010–2024, [Coleman and Li (2026)](https://doi.org/10.1080/13523260.2026.2704869) found the largest and the token contributors relatively shielded from downsizing.
+- **The largest contributors lost about as much as other large contributors** (a comparison added after the main results). The 11 largest contributors in June 2025 (Ethiopia and Tanzania tie for tenth place) lost 27.4% of their personnel, about the same as the other countries with 100 or more (26.0%) and less than those with 20 to 99 (31.7%); countries with fewer than 20 lost 15.7%. For 2010–2024, [Coleman and Li (2026)](https://doi.org/10.1080/13523260.2026.2704869) found the largest and the token contributors relatively shielded from downsizing; the size groups here need not match theirs.
 - **Checks.** The results hold from a September 2025 baseline and for troops and formed police units only, and a placebo over the 13 months before the cut shows no dependence gradient. In checks added after the main results they also hold with a size control and without South Africa or the most dependent countries. Without the five missions whose reductions the Security Council decided separately, among them MINUSCA and UNMISS (check C5), the estimates keep their size but lose precision (H2 -1.91, p = 0.049; H3 -1.78, p = 0.134). Unweighted, the gradient is not significant: it is a feature of the large contingents.
 
 The analysis plan was written before any of these results were computed and is the first commit of this repository: [`plan/analysis_plan.md`](plan/analysis_plan.md). Its change log records everything added later.
@@ -46,7 +46,7 @@ python code/03_figures.py
 
 ## Data sources
 
-- United Nations, Peace and Security Data Hub: "Historical Uniformed Personnel Contribution" (DPO-UCHISTORICAL), via peacekeeping-tracker v1.0.0 (https://doi.org/10.5281/zenodo.23752307).
+- United Nations, Peace and Security Data Hub: "Historical Uniformed Personnel Contribution" (DPO-UCHISTORICAL) and, for the historical comparisons, "Historical Uniformed Personnel Contribution prior to 2010" (DPPADPO-UCPre2010), via peacekeeping-tracker v1.0.0 (https://doi.org/10.5281/zenodo.23752307).
 - World Bank, World Development Indicators: military expenditure, current US$ (MS.MIL.XPND.CD, based on SIPRI) and GDP per capita, current US$ (NY.GDP.PCAP.CD), as compiled in peacekeeping-for-profit-update v1.0.0 (https://doi.org/10.5281/zenodo.23768250). CC BY 4.0.
 - UN standard reimbursement rate: General Assembly resolution 76/276 (29 June 2022), paragraph 9: US$1,448 per person per month from 1 July 2022.
 
@@ -54,7 +54,7 @@ python code/03_figures.py
 
 - Payments are amounts owed at the standard rate, not cash paid. They exclude contingent-owned equipment, and the UN often pays late.
 - Personnel are numbers as published by the UN; nothing is estimated or filled in.
-- The results describe who bore the cut, not who decided it: the data cannot show whether a contingent left because the UN chose it or because its government did.
+- The results describe who bore the cut, not why. UN documents say missions, with headquarters departments, determined which contingents would be repatriated; they do not say how they chose among contributors.
 
 ## License
 
