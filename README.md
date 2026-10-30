@@ -2,7 +2,7 @@
 
 Replication package for the working paper *The 2025–26 UN Peacekeeping Cuts and the Countries That Supply the Troops: Evidence from Monthly Deployment Data* (Kazi Affnann Azom, 2026).
 
-Between June 2025 and July 2026 the number of uniformed personnel in UN missions fell by 16,480, or 26.9%, after the UN announced in October 2025 that a funding shortfall would force it to cut its peacekeepers. This package measures which contributing countries bore that cut, in people and in UN payments, and whether it fell harder on the countries that depend most on those payments.
+Between June 2025 and July 2026 the number of uniformed personnel in UN missions fell by 16,480, or 26.9%, after the UN, short of cash because member states had not paid their contributions in full, told its peacekeeping missions in October 2025 to cut their spending by 15%. This package measures which contributing countries bore that cut, in people and in UN payments, and whether it fell harder on the countries that depend most on those payments.
 
 ## Main results
 
@@ -10,7 +10,7 @@ Between June 2025 and July 2026 the number of uniformed personnel in UN missions
 - **Missions explain little of the variation between countries.** The four largest missions were each cut by 24% to 33%, so the change predicted from a country's missions varies little; the weighted R² of the actual on the predicted change is 0.12, below the 0.5 the analysis plan set, so H1 fails.
 - **The money.** At the UN's standard rate of US$1,448 per person per month, payments owed to contributing governments fell by US$259.6 million a year. Rwanda's lost payments equal 17.4% of its 2024 military spending, Nepal's 7.1% and Ghana's 4.2%. Bangladesh's fell by US$28.0 million a year (0.75%).
 - **The largest contributors were not shielded.** The ten largest contributors in June 2025 lost 27.1% of their personnel, about the same as the other countries with 100 or more (26.5%); countries with fewer than 20 lost 15.7%. For 2010–2024, [Coleman and Li (2026)](https://doi.org/10.1080/13523260.2026.2704869) found the largest and the token contributors relatively shielded from downsizing.
-- **Checks.** The results hold from a September 2025 baseline, for troops and formed police units only, with a size control, and without South Africa or the most dependent countries. A placebo over the 13 months before the cut shows no dependence gradient. Unweighted, the gradient is not significant: it is a feature of the large contingents.
+- **Checks.** The results hold from a September 2025 baseline, for troops and formed police units only, with a size control, and without South Africa or the most dependent countries. A placebo over the 13 months before the cut shows no dependence gradient. Without MINUSCA and UNMISS, whose ceilings the Security Council lowered during the window (check C5), the estimates keep their size but lose precision (H2 -1.91, p = 0.049; H3 -1.78, p = 0.134). Unweighted, the gradient is not significant: it is a feature of the large contingents.
 
 The analysis plan was written and published before any of these results were computed: [`plan/analysis_plan.md`](plan/analysis_plan.md) (first commit of this repository).
 
