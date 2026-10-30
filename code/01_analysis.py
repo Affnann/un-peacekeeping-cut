@@ -44,6 +44,23 @@ WINDOWS = {
     "C3_placebo": ("2024-05", "2025-06", 2023),
 }
 
+# C5 (plan, section 5): missions whose reduction during the main window was decided separately by the
+# Security Council, through a mandated closure or a lower authorised strength. Identified from the
+# resolutions on 30 October 2026, before this check was run:
+#   MINUSCA  S/RES/2800 (2025), 13 Nov 2025: up to 14,046 military and 2,999 police personnel
+#            (from 14,400 and 3,020 in S/RES/2759 (2024))
+#   UNMISS   S/RES/2820 (2026), 30 Apr 2026: troop ceiling 12,500 (from 17,000 in S/RES/2779 (2025));
+#            police ceiling unchanged at 2,101
+#   UNAMI    S/RES/2732 (2024): a final period to 31 Dec 2025, after which the mission ceased all work
+#   UNMHA    S/RES/2813 (2026), 27 Jan 2026: a final period to 31 Mar 2026, then liquidation
+#   UNVMC    S/RES/2798 (2025), 31 Oct 2025: discontinued the ceasefire-monitoring expansion of
+#            S/RES/2694 (2023) "and its associated resources" (2694 had added up to 68 international observers)
+# Not excluded: UNIFIL (S/RES/2790 (2025): operations cease on 31 Dec 2026, after the window), UNTMIS
+# (S/RES/2809 (2025): operations cease on 31 Oct 2026, after the window), and the missions whose renewals
+# in the window kept their ceilings (MONUSCO, S/RES/2808 (2025); UNISFA, S/RES/2802 (2025)) or set none
+# (UNDOF, UNFICYP, MINURSO).
+C5_MISSIONS = ["MINUSCA", "UNMISS", "UNAMI", "UNMHA", "UNVMC"]
+
 
 # ---------------------------------------------------------------- data
 
@@ -139,10 +156,14 @@ def wls(y, x, w, fe=None):
 
 
 def run_tests(c, label, t0, t1, milex_year, cats, milex, gdppc, min_country=MAIN_MIN_COUNTRY,
-              weighted=True, exclude_missions=None, use_gdppc=False):
+              weighted=True, exclude_missions=None, use_gdppc=False, d_from=None):
+    """d_from: optional Series of D by country to use instead of D computed from the data passed in
+    (used for a C5 variant in which dependence is measured from all missions)."""
     cdat = c if not exclude_missions else c[~c["mission"].isin(exclude_missions)]
     cm, mis, cty = window_tables(cdat, t0, t1, cats)
     cty = add_money(cdat, cty, t0, t1, milex_year, milex, gdppc, milex_year)
+    if d_from is not None:
+        cty["D"] = d_from.reindex(cty.index)
     rows = []
     s = cty[cty["x0"] >= min_country]
     w = s["x0"] if weighted else None
@@ -211,6 +232,9 @@ def main():
     reg_rows += r
     r, *_ = run_tests(c, "C4 income (P)", t0, t1, my, P_CATS, milex, gdppc, use_gdppc=True)
     reg_rows += [x for x in r if not x["test"].startswith("H1")]
+    r, *_ = run_tests(c, "C5 without separately decided drawdowns (P)", t0, t1, my, P_CATS, milex, gdppc,
+                      exclude_missions=C5_MISSIONS)
+    reg_rows += r
     r, *_ = run_tests(c, "C6 unweighted (P)", t0, t1, my, P_CATS, milex, gdppc, weighted=False)
     reg_rows += [x for x in r if x["test"].startswith("H1") or x["test"].startswith("H2 total")]
     r, *_ = run_tests(c, "C6 threshold 20 (P)", t0, t1, my, P_CATS, milex, gdppc, min_country=20)

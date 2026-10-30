@@ -10,6 +10,10 @@ Each is labelled as such in tables/extra_checks.csv and in the paper:
       the plan's literal definitions treat UNSOM as closing and UNTMIS as new
   X7  The cut by contributor size (top 10 by June 2025 personnel; other countries with 100 or more;
       20 to 99; under 20), and a weighted quadratic in ln P_c0, to compare with Coleman and Li (2026)
+  X8  C5 with dependence D measured from all missions (in C5 every measure comes from the remaining missions)
+  X9  C5 excluding only UNAMI, UNMHA and UNVMC, where the Council's decision itself removed personnel in the
+      window; MINUSCA's and UNMISS's new ceilings were above their strength when adopted
+  (X8 and X9 were decided before C5 was run.)
 
 Usage: python code/02_extra_checks.py  (after code/01_analysis.py)
 """
@@ -88,6 +92,18 @@ X = sm.add_constant(q[["lnP0", "lnP0sq"]].astype(float), has_constant="add")
 r = sm.WLS(q["pct"].astype(float), X, weights=q["x0"].astype(float)).fit(cov_type="HC1")
 rows.append({"check": "X7 weighted quadratic in ln P0", "coef_lnP0": r.params["lnP0"], "p_lnP0": r.pvalues["lnP0"],
              "coef_lnP0sq": r.params["lnP0sq"], "p_lnP0sq": r.pvalues["lnP0sq"], "n": int(r.nobs)})
+
+# X8 and X9: variants of C5
+t0m, t1m, yrm = a.WINDOWS["main"]
+c0 = a.load_un()
+for tag, excl, dfrom in [("X8 C5 with D from all missions", a.C5_MISSIONS, cty["D"]),
+                         ("X9 C5 without only UNAMI, UNMHA and UNVMC", ["UNAMI", "UNMHA", "UNVMC"], None)]:
+    res, *_ = a.run_tests(c0, tag, t0m, t1m, yrm, a.P_CATS, milex, gdppc, exclude_missions=excl, d_from=dfrom)
+    for x in res:
+        if x["test"].startswith("H1") or x["test"].startswith("H2 total") or x["test"].startswith("H3"):
+            rows.append({"check": f"{tag}: {x['test']}", "coef_lnD": x["coef"] if not x["test"].startswith("H1") else np.nan,
+                         "slope_H1": x["coef"] if x["test"].startswith("H1") else np.nan,
+                         "se": x["se"], "p": x["p"], "r2": x["r2"], "n": x["n"], "n_missions": x.get("n_missions", np.nan)})
 
 out = pd.DataFrame(rows)
 (ROOT / "tables").mkdir(exist_ok=True)
